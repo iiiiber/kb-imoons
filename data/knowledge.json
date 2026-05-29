@@ -17,7 +17,7 @@
       "date": "2026-05-20",
       "views": 1280,
       "level": "中级",
-      "content": "<h2>什么是 CSS Grid</h2><p>CSS Grid 是一个二维布局系统，可以同时处理行和列。相比 Flexbox 的一维布局，Grid 更适合复杂的页面布局。</p><h2>基本概念</h2><p>Grid 布局有两个核心概念：网格容器（Grid Container）和网格项（Grid Items）。</p><pre class=code>\\n.container {\\n  display: grid;\\n  grid-template-columns: repeat(3, 1fr);\\n  grid-template-rows: auto;\\n  gap: 20px;\\n}\\n</pre><h2>grid-template-columns</h2><p>定义列的数量和宽度。使用 fr 单位可以按比例分配剩余空间。</p><pre class=code>\\n/* 三等分列 */\\ngrid-template-columns: 1fr 1fr 1fr;\\n\\n/* 固定宽度 + 自适应 */\\ngrid-template-columns: 200px 1fr;\\n\\n/* 重复模式 */\\ngrid-template-columns: repeat(auto-fit, minmax(200px, 1fr));\\n</pre><h2>gap 属性</h2><p>控制网格项之间的间距。</p><pre class=code>\\ngap: 20px;        /* 行和列间距相同 */\\ngap: 20px 10px;   /* 行间距 20px，列间距 10px */\\n</pre><h2>对齐方式</h2><p>使用 justify-items 和 align-items 控制网格项在单元格内的对齐。</p>"
+      "content": "<h2>什么是 CSS Grid</h2><p>CSS Grid 是一个二维布局系统，可以同时处理行和列。相比 Flexbox 的一维布局，Grid 更适合复杂的页面布局。</p><h2>基本概念</h2><p>Grid 布局有两个核心概念：网格容器（Grid Container）和网格项（Grid Items）。</p><pre class=code>.container {\n  display: grid;\n  grid-template-columns: repeat(3, 1fr);\n  grid-template-rows: auto;\n  gap: 20px;\n}</pre><h2>grid-template-columns</h2><p>定义列的数量和宽度。使用 fr 单位可以按比例分配剩余空间。</p><pre class=code>/* 三等分列 */\ngrid-template-columns: 1fr 1fr 1fr;\n\n/* 固定宽度 + 自适应 */\ngrid-template-columns: 200px 1fr;\n\n/* 重复模式 */\ngrid-template-columns: repeat(auto-fit, minmax(200px, 1fr));</pre><h2>gap 属性</h2><p>控制网格项之间的间距。</p><pre class=code>gap: 20px;        /* 行和列间距相同 */\ngap: 20px 10px;   /* 行间距 20px，列间距 10px */</pre><h2>对齐方式</h2><p>使用 justify-items 和 align-items 控制网格项在单元格内的对齐。</p>"
     },
     {
       "id": "002",
@@ -29,7 +29,7 @@
       "date": "2026-05-22",
       "views": 2340,
       "level": "初级",
-      "content": "<h2>LLM 应用场景</h2><p>大语言模型的应用场景非常广泛，包括：智能问答、文本生成、代码补全、知识库问答等。</p><h2>基础 API 调用</h2><p>以 OpenAI API 为例，了解基本的对话调用方式。</p><pre class=code>\\nimport openai\\n\\nopenai.api_key = \\"YOUR_API_KEY\\"\\n\\nresponse = openai.ChatCompletion.create(\\n    model=\\"gpt-4\\",\\n    messages=[\\n        {\\"role\\": \\"user\\", \\"content\\": \\"什么是 RAG?\\"}\\n    ]\\n)\\nprint(response.choices[0].message.content)\\n</pre><h2>RAG 系统架构</h2><p>RAG（检索增强生成）由三个核心组件构成：</p><ul><li>数据源 → 文档加载和切分</li><li>向量数据库 → Embedding 和检索</li><li>LLM → 基于检索结果生成回答</li></ul>"
+      "content": "<h2>LLM 应用场景</h2><p>大语言模型的应用场景非常广泛，包括：智能问答、文本生成、代码补全、知识库问答等。</p><h2>基础 API 调用</h2><p>以 OpenAI API 为例，了解基本的对话调用方式。</p><pre class=code>import openai\n\nopenai.api_key = \"YOUR_API_KEY\"\n\nresponse = openai.ChatCompletion.create(\n    model=\"gpt-4\",\n    messages=[\n        {\"role\": \"user\", \"content\": \"什么是 RAG?\"}\n    ]\n)\nprint(response.choices[0].message.content)</pre><h2>RAG 系统架构</h2><p>RAG（检索增强生成）由三个核心组件构成：</p><ul><li>数据源：文档加载和切分</li><li>向量数据库：Embedding 和检索</li><li>LLM：基于检索结果生成回答</li></ul>"
     },
     {
       "id": "003",
@@ -41,7 +41,7 @@
       "date": "2026-05-18",
       "views": 1890,
       "level": "中级",
-      "content": "<h2>Docker 核心概念</h2><p>Docker 是一个开源的容器化平台，通过容器来打包应用及其依赖，实现环境一致性。</p><h2>Dockerfile 编写</h2><p>Dockerfile 是构建容器镜像的指令文件。</p><pre class=code>\\nFROM node:18-alpine\\nWORKDIR /app\\nCOPY package*.json ./\\nRUN npm install\\nCOPY . .\\nEXPOSE 3000\\nCMD [\\"node\\", \\"server.js\\"]\\n</pre><h2>常用命令</h2><pre class=code>\\ndocker build -t myapp:latest .\\ndocker run -p 3000:3000 myapp:latest\\ndocker-compose up -d\\n</pre><h2>Docker Compose</h2><p>用于定义和管理多容器应用。</p><pre class=code>\\nversion: \\"3.8\\"\\nservices:\\n  web:\\n    build: .\\n    ports:\\n      - \\"3000:3000\\"\\n  redis:\\n    image: redis:alpine\\n</pre>"
+      "content": "<h2>Docker 核心概念</h2><p>Docker 是一个开源的容器化平台，通过容器来打包应用及其依赖，实现环境一致性。</p><h2>Dockerfile 编写</h2><p>Dockerfile 是构建容器镜像的指令文件。</p><pre class=code>FROM node:18-alpine\nWORKDIR /app\nCOPY package*.json ./\nRUN npm install\nCOPY . .\nEXPOSE 3000\nCMD [\"node\", \"server.js\"]</pre><h2>常用命令</h2><pre class=code>docker build -t myapp:latest .\ndocker run -p 3000:3000 myapp:latest\ndocker-compose up -d</pre><h2>Docker Compose</h2><p>用于定义和管理多容器应用。</p><pre class=code>version: \"3.8\"\nservices:\n  web:\n    build: .\n    ports:\n      - \"3000:3000\"\n  redis:\n    image: redis:alpine</pre>"
     },
     {
       "id": "004",
@@ -53,7 +53,7 @@
       "date": "2026-05-15",
       "views": 980,
       "level": "高级",
-      "content": "<h2>为什么需要异步编程</h2><p>异步编程允许单线程处理大量并发 I/O 操作，显著提升 I/O 密集型应用的性能。</p><h2>async/await 语法</h2><pre class=code>\\nimport asyncio\\n\\nasync def fetch_data(url):\\n    async with aiohttp.ClientSession() as session:\\n        async with session.get(url) as response:\\n            return await response.json()\\n\\nasync def main():\\n    result = await fetch_data(\\"https://api.example.com/data\\")\\n    print(result)\\n\\nasyncio.run(main())\\n</pre><h2>并发执行多个任务</h2><pre class=code>\\ntasks = [fetch_data(url) for url in urls]\\nresults = await asyncio.gather(*tasks)\\n</pre>"
+      "content": "<h2>为什么需要异步编程</h2><p>异步编程允许单线程处理大量并发 I/O 操作，显著提升 I/O 密集型应用的性能。</p><h2>async/await 语法</h2><pre class=code>import asyncio\n\nasync def fetch_data(url):\n    async with aiohttp.ClientSession() as session:\n        async with session.get(url) as response:\n            return await response.json()\n\nasync def main():\n    result = await fetch_data(\"https://api.example.com/data\")\n    print(result)\n\nasyncio.run(main())</pre><h2>并发执行多个任务</h2><pre class=code>tasks = [fetch_data(url) for url in urls]\nresults = await asyncio.gather(*tasks)</pre>"
     },
     {
       "id": "005",
@@ -77,7 +77,7 @@
       "date": "2026-05-12",
       "views": 2100,
       "level": "初级",
-      "content": "<h2>Flexbox 基础</h2><p>Flexbox 是一维布局模型，适合处理一行或一列内的元素排列。</p><pre class=code>\\n.container {\\n  display: flex;\\n  justify-content: space-between;\\n  align-items: center;\\n  gap: 16px;\\n}\\n</pre><h2>justify-content vs align-items</h2><p>justify-content 控制主轴（main axis）对齐，align-items 控制交叉轴（cross axis）对齐。</p><h2>flex 属性</h2><pre class=code>\\n.item {\\n  flex: 1;          /* 等宽 */\\n  flex: 0 0 200px;   /* 不伸缩，固定200px */\\n  flex: 2 1 auto;     /* 放大比例2，缩小比例1 */\\n}\\n</pre>"
+      "content": "<h2>Flexbox 基础</h2><p>Flexbox 是一维布局模型，适合处理一行或一列内的元素排列。</p><pre class=code>.container {\n  display: flex;\n  justify-content: space-between;\n  align-items: center;\n  gap: 16px;\n}</pre><h2>justify-content vs align-items</h2><p>justify-content 控制主轴（main axis）对齐，align-items 控制交叉轴（cross axis）对齐。</p><h2>flex 属性</h2><pre class=code>.item {\n  flex: 1;          /* 等宽 */\n  flex: 0 0 200px;   /* 不伸缩，固定200px */\n  flex: 2 1 auto;     /* 放大比例2，缩小比例1 */\n}</pre>"
     }
   ]
 }
