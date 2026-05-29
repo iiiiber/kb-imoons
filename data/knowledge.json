@@ -29,19 +29,32 @@
       "name": "工具推荐",
       "icon": "🔧",
       "order": 5
+    },
+    {
+      "id": "kylin",
+      "name": "银河麒麟",
+      "icon": "🦊",
+      "order": 6
+    },
+    {
+      "id": "linux",
+      "name": "Linux命令",
+      "icon": "💻",
+      "order": 7
     }
   ],
   "articles": [
     {
       "id": "008",
-      "category": "devops",
+      "category": "linux",
       "title": "Linux dd 命令详解",
       "desc": "逐字节复制工具的语法、参数、磁盘测速实战与注意事项",
       "tags": [
         "Linux",
         "dd",
         "磁盘",
-        "命令行"
+        "命令行",
+        "存储"
       ],
       "author": "imoons",
       "date": "2026-05-29",
