@@ -843,6 +843,7 @@ body {
 
 <script>
 // ── State ──
+let iconMap = {};
 let allData = { categories: [], articles: [] };
 let activeCat = 'all';
 
@@ -873,7 +874,6 @@ function renderSidebar() {
   const catCount = {};
   allData.articles.forEach(a => { catCount[a.category] = (catCount[a.category] || 0) + 1; });
 
-  const iconMap = { frontend: gridIcon, backend: serverIcon, devops: cloudIcon, ai: aiIcon, tools: toolIcon };
   const icons = { frontend: gridIcon, backend: serverIcon, devops: cloudIcon, ai: aiIcon, tools: toolIcon };
 
   allData.categories.sort((a,b) => a.order - b.order).forEach(cat => {
