@@ -1,18 +1,64 @@
 {
   "categories": [
-    { "id": "frontend", "name": "前端开发", "icon": "🎨", "order": 1 },
-    { "id": "backend", "name": "后端开发", "icon": "⚙️", "order": 2 },
-    { "id": "devops", "name": "DevOps", "icon": "🚀", "order": 3 },
-    { "id": "ai", "name": "AI & ML", "icon": "🤖", "order": 4 },
-    { "id": "tools", "name": "工具推荐", "icon": "🔧", "order": 5 }
+    {
+      "id": "frontend",
+      "name": "前端开发",
+      "icon": "🎨",
+      "order": 1
+    },
+    {
+      "id": "backend",
+      "name": "后端开发",
+      "icon": "⚙️",
+      "order": 2
+    },
+    {
+      "id": "devops",
+      "name": "DevOps",
+      "icon": "🚀",
+      "order": 3
+    },
+    {
+      "id": "ai",
+      "name": "AI & ML",
+      "icon": "🤖",
+      "order": 4
+    },
+    {
+      "id": "tools",
+      "name": "工具推荐",
+      "icon": "🔧",
+      "order": 5
+    }
   ],
   "articles": [
+    {
+      "id": "007",
+      "category": "devops",
+      "title": "Cloudflare Pages + GitHub 自动化部署",
+      "desc": "通过 GitHub webhook 实现代码 push 后自动构建部署到 Cloudflare Pages 全流程",
+      "tags": [
+        "Cloudflare",
+        "GitHub",
+        "CI/CD",
+        "DevOps"
+      ],
+      "author": "imoons",
+      "date": "2026-05-29",
+      "views": 1,
+      "level": "中级",
+      "content": "<h2>背景</h2><p>本文记录如何使用纯静态网站配合 Cloudflare Pages + GitHub webhook 实现代码 push 后自动构建部署到 CDN，整个过程无需登录 Cloudflare Dashboard。</p><h2>架构</h2><p>整体链路：本地代码 &rarr; GitHub 仓库 &rarr; GitHub webhook &rarr; Cloudflare Pages &rarr; CDN 边缘节点。触发方式为在 GitHub 仓库添加 Cloudflare Pages 专用的 webhook，当有 push 或 PR 事件时自动触发构建部署。</p><h2>前置条件</h2><ul><li>Cloudflare 账号及 API Token（有 pages 相关权限）</li><li>GitHub 账号及 Personal Access Token（有 repo 和 hooks 权限）</li><li>目标仓库（可新建）</li></ul><h2>Step 1：创建 GitHub 仓库</h2><pre class=code>curl -X POST https://api.github.com/user/repos \\\n  -H \"Authorization: Bearer YOUR_GITHUB_TOKEN\" \\\n  -H \"Content-Type: application/json\" \\\n  -d '{\"name\":\"your-repo\",\"description\":\"描述\",\"private\":false}'</pre><h2>Step 2：创建 Cloudflare Pages 项目并绑定 GitHub</h2><p>通过 Cloudflare API 创建项目并同时配置 GitHub source：</p><pre class=code>curl -X POST https://api.cloudflare.com/client/v4/accounts/ACCOUNT_ID/pages/projects \\\n  -H \"Authorization: Bearer CF_API_TOKEN\" \\\n  -H \"Content-Type: application/json\" \\\n  -d '{\n    \"name\": \"project-name\",\n    \"subdomain\": \"pages.dev\",\n    \"production_branch\": \"main\",\n    \"source\": {\n      \"type\": \"github\",\n      \"config\": {\n        \"owner\": \"github-username\",\n        \"owner_id\": \"github-owner-id\",\n        \"repo_name\": \"repo-name\",\n        \"production_branch\": \"main\",\n        \"deployments_enabled\": true\n      }\n    }\n  }'</pre><h2>Step 3：添加 GitHub Webhook</h2><p>Cloudflare Pages 的 GitHub App 通常需要手动安装。如无法安装，可用 GitHub API 直接添加 webhook：</p><pre class=code>WEBHOOK_URL=\"https://pages.cloudflare.com/api/v1/accounts/ACCOUNT_ID/pages/projects/PROJECT_NAME/github\"\ncurl -X POST https://api.github.com/repos/USER/REPO/hooks \\\n  -H \"Authorization: Bearer YOUR_GITHUB_TOKEN\" \\\n  -H \"Content-Type: application/json\" \\\n  -d \"{\n    \\\"name\\\": \\\"web\\\",\n    \\\"active\\\": true,\n    \\\"events\\\": [\\\"push\\\", \\\"pull_request\\\"],\n    \\\"config\\\": {\n        \\\"url\\\": \\\"${WEBHOOK_URL}\\\",\n        \\\"content_type\\\": \\\"json\\\"\n    }\n  }\"</pre><h2>Step 4：本地开发流程</h2><p>克隆仓库到本地，修改代码后提交推送到 GitHub 即可触发自动部署。首次部署可能需要 1-2 分钟，之后每次 push 都会自动触发。</p><pre class=code>git clone https://github.com/USER/repo.git\ncd repo\n# 编辑代码\ngit add .\ngit commit -m \"update\"\ngit push origin main\n# 等待自动部署完成，访问 https://project.pages.dev</pre><h2>注意事项</h2><ul><li>直接通过 API 创建项目时 source 字段配置与通过 GitHub App 安装效果相同，但需要手动添加 webhook</li><li>wrangler deploy 是 ad_hoc 方式，不会自动设为 production，GitHub push 触发的才是 production</li><li>如果 GitHub App 未安装，webhook 方式仍能正常工作</li><li>部署完成后可通过 curl 验证：curl -sI https://project.pages.dev/</li></ul>"
+    },
     {
       "id": "001",
       "category": "frontend",
       "title": "CSS Grid 完整指南",
       "desc": "深入理解 CSS Grid 布局系统，掌握网格容器与网格项的核心属性",
-      "tags": ["CSS", "布局", "Grid"],
+      "tags": [
+        "CSS",
+        "布局",
+        "Grid"
+      ],
       "author": "imoons",
       "date": "2026-05-20",
       "views": 1280,
@@ -24,7 +70,11 @@
       "category": "ai",
       "title": "LLM 应用开发入门",
       "desc": "从 API 调用到 RAG 系统构建，快速上手 LLM 应用开发",
-      "tags": ["LLM", "RAG", "Python"],
+      "tags": [
+        "LLM",
+        "RAG",
+        "Python"
+      ],
       "author": "imoons",
       "date": "2026-05-22",
       "views": 2340,
@@ -36,7 +86,11 @@
       "category": "devops",
       "title": "Docker 容器化实战",
       "desc": "从 Dockerfile 编写到 Docker Compose 多容器编排完整指南",
-      "tags": ["Docker", "容器化", "DevOps"],
+      "tags": [
+        "Docker",
+        "容器化",
+        "DevOps"
+      ],
       "author": "imoons",
       "date": "2026-05-18",
       "views": 1890,
@@ -48,7 +102,11 @@
       "category": "backend",
       "title": "Python 异步编程详解",
       "desc": "深入理解 async/await、asyncio 模块与异步上下文管理器",
-      "tags": ["Python", "异步", "asyncio"],
+      "tags": [
+        "Python",
+        "异步",
+        "asyncio"
+      ],
       "author": "imoons",
       "date": "2026-05-15",
       "views": 980,
@@ -60,7 +118,11 @@
       "category": "tools",
       "title": "10 个提升效率的开发工具",
       "desc": "精心挑选的开发工具合集，覆盖代码编辑、API 测试、数据库管理",
-      "tags": ["工具", "效率", "开发"],
+      "tags": [
+        "工具",
+        "效率",
+        "开发"
+      ],
       "author": "imoons",
       "date": "2026-05-25",
       "views": 3200,
@@ -72,7 +134,11 @@
       "category": "frontend",
       "title": "Flexbox 布局完全掌握",
       "desc": "flex容器与flex项的核心属性与实战技巧",
-      "tags": ["CSS", "Flexbox", "布局"],
+      "tags": [
+        "CSS",
+        "Flexbox",
+        "布局"
+      ],
       "author": "imoons",
       "date": "2026-05-12",
       "views": 2100,
