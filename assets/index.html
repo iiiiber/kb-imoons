@@ -606,13 +606,13 @@ body {
 <!-- Header -->
 <header class="header">
   <a href="#" class="logo">
-    <div class="logo-icon">📚</div>
+    <div class="logo-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg></div>
     知识学习库
   </a>
   <div class="search-bar">
-    <span class="search-icon">🔍</span>
+    <span class="search-icon"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg></span>
     <input type="text" id="searchInput" placeholder="搜索标题、标签...">
-    <button class="search-clear" id="searchClear" onclick="clearSearch()">✕</button>
+    <button class="search-clear" id="searchClear" onclick="clearSearch()"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
   </div>
   <div class="header-right">
     <button class="icon-btn" id="themeToggle" title="切换主题" onclick="toggleTheme()">
@@ -635,7 +635,7 @@ body {
     <div class="sidebar-section">
       <div class="sidebar-label">浏览</div>
       <button class="sidebar-item active" data-cat="all" onclick="filterCat('all')">
-        <span>📚</span> 全部文章
+        <span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg></span> 全部文章
         <span class="count" id="count-all">0</span>
       </button>
     </div>
@@ -649,7 +649,7 @@ body {
   <!-- Main -->
   <main class="main">
     <div class="page-header">
-      <div class="page-title">📖 知识学习库</div>
+      <div class="page-title"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg> 知识学习库</div>
       <div class="page-sub">技术沉淀 · 持续更新 · 精选优质内容</div>
     </div>
 
@@ -676,7 +676,7 @@ body {
     <!-- Category Filter Pills -->
     <div class="cat-pills" id="catPills">
       <button class="cat-pill active" data-cat="all" onclick="filterCat('all')">
-        <span class="icon">📚</span> 全部
+        <span class="icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg></span> 全部
       </button>
     </div>
 
@@ -691,7 +691,7 @@ body {
 <div class="detail-overlay" id="detailOverlay" onclick="closeDetail(event)">
   <div class="detail-modal" id="detailModal" onclick="event.stopPropagation()">
     <div class="detail-header">
-      <button class="detail-close" onclick="closeDetail()">✕</button>
+      <button class="detail-close" onclick="closeDetail()"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
       <div class="detail-meta">
         <div class="detail-title" id="detailTitle"></div>
         <div class="detail-info">
@@ -723,7 +723,7 @@ async function loadData() {
     renderAll();
   } catch (e) {
     document.getElementById('articlesGrid').innerHTML =
-      '<div class="empty-state"><div class="empty-icon">📡</div>数据加载失败，请刷新重试</div>';
+      '<div class="empty-state"><div class="empty-icon"><svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4.93 4.93A10 10 0 0 1 9 2a10 10 0 0 1 8.54 5.72"/><path d="M7.51 7.51A5 5 0 0 1 11 4.5a5 5 0 0 1 3.06 2.12"/><path d="M2 12a10 10 0 0 1 14.93-8.93"/><path d="M12 12v9"/><path d="m8 17 4 4 4-4"/></svg></div>数据加载失败，请刷新重试</div>';
   }
 }
 
@@ -763,7 +763,7 @@ function renderPills() {
   const container = document.getElementById('catPills');
   container.innerHTML = `
     <button class="cat-pill${activeCat==='all'?' active':''}" data-cat="all" onclick="filterCat('all')">
-      <span class="icon">📚</span> 全部
+      <span class="icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg></span> 全部
     </button>
   `;
   allData.categories.sort((a,b) => a.order - b.order).forEach(cat => {
@@ -790,7 +790,7 @@ function renderStats() {
 
 function getCatName(catId) {
   const cat = allData.categories.find(c => c.id === catId);
-  return cat ? { name: cat.name, icon: cat.icon } : { name: catId, icon: '📂' };
+  return cat ? { name: cat.name, icon: cat.icon } : { name: catId, icon: '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/></svg>' };
 }
 
 function renderArticles() {
@@ -808,7 +808,7 @@ function renderArticles() {
   }
 
   if (articles.length === 0) {
-    grid.innerHTML = `<div class="empty-state"><div class="empty-icon">🔍</div>没有找到相关文章</div>`;
+    grid.innerHTML = `<div class="empty-state"><div class="empty-icon"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg></div>没有找到相关文章</div>`;
     return;
   }
 
@@ -826,11 +826,11 @@ function renderArticles() {
         ${(a.tags||[]).slice(0,3).map(t => `<span class="tag">${t}</span>`).join('')}
       </div>
       <div class="card-footer">
-        <span>👤 ${a.author || 'imoons'}</span>
+        <span><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg> ${a.author || 'imoons'}</span>
         <span class="dot">•</span>
-        <span>📅 ${a.date || ''}</span>
+        <span><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg> ${a.date || ''}</span>
         <span class="dot">•</span>
-        <span>👁 ${a.views || 0}</span>
+        <span><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg> ${a.views || 0}</span>
       </div>
     </div>
     `;
@@ -880,7 +880,7 @@ function openDetail(id) {
   document.getElementById('detailCat').textContent = `${cat.icon} ${cat.name}`;
   document.getElementById('detailLevel').textContent = article.level || '';
   document.getElementById('detailDate').textContent = article.date || '';
-  document.getElementById('detailViews').textContent = `👁 ${article.views || 0} 次阅读`;
+  document.getElementById('detailViews').textContent = `<svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg> ${article.views || 0} 次阅读`;
   document.getElementById('detailTags').innerHTML = (article.tags||[]).map(t => `<span class="tag">${t}</span>`).join('');
 
   document.getElementById('detailBody').innerHTML = article.content || '<p>内容加载中...</p>';
